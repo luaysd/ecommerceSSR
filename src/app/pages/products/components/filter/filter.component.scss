@@ -1,0 +1,62 @@
+.filter-section{
+  margin-bottom: 30px;
+}
+.filter-title{
+  font-family: Marcellus;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-bottom: 1px solid rgb(200 199 199);;
+  margin-bottom: 30px;
+}
+.filter-title::after{
+  content: "";
+  display: block;
+  margin-top: 20px;
+  width: 60px;
+  height: 2px;
+  background: #ff7004;
+  z-index: 2;
+  margin-bottom: -1px;
+}
+.filter-inputs{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.filter-checkbox-input{
+  margin-right: 10px;
+  line-height: 20px;
+  height: 21px;
+  width: 17px;
+  vertical-align: middle;
+}
+.filter-checkbox-filter{
+  color: #555;
+  font-weight: 300;
+}
+input[type='checkbox'] {
+  accent-color: rgb(227, 101, 5) !important;
+}
+::ng-deep .price-range-input input{
+  border-radius: 0;
+  border: 1px solid rgb(155, 155, 155);
+  // width: 100px;
+}
+::ng-deep .price-range-input input:focus{
+    outline: none !important ;
+    outline-offset: 0 !important ;
+    box-shadow: none !important ;
+}
+::ng-deep .price-range-input .p-inputnumber-button-group button{
+    background: #ff7004;
+    color: white;
+}
+::ng-deep .price-range-input .p-inputnumber-button-group button:nth-child(1){
+border-bottom: 1px solid rgb(183, 183, 183);
+}
+.apply-filter-button{
+  background: black;
+  color: #f3f2f2;
+  padding: 12px 18px;
+}

@@ -1,0 +1,125 @@
+.header-first{
+  background: #2f333a;
+  width: 100%;
+  height: 44.75px;
+  display: flex;
+  justify-content: center
+
+}
+.header-first > div{
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-welcome-info{
+  color: #ff7004eb;
+  width:  fit-content;
+  font-style: italic;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 14px;
+}
+.header-settings{
+  width: fit-content;
+}
+.header-second{
+  background: #fefefe;
+  width: 100%;
+  height: 91px;
+  padding: 29px 0;
+  display: flex;
+  justify-content: center
+}
+.header-second > div{
+
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.header-brand-title{
+
+  font-size: 44px;
+  width: fit-content;
+}
+.header-actions{
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  column-gap: 18px;
+  align-items: center;
+}
+.header-actions i{
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.header-actions i:hover{
+  color: #ff7004 ;
+}
+.actions-separator{
+  width: 1px;
+  height: 30px;
+  background-color: black;
+}
+.header-settings{
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+  height: 100%;
+  align-items: center;
+  color: white;
+  font-weight: 300;
+}
+.header-settings > div:not(settings-separator){
+  height: 100%;
+  position: relative;
+}
+.header-settings > div:not(settings-separator) > div:nth-child(1){
+  color: white;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+.header-settings > div:not(settings-separator):hover  > div:nth-child(1){
+  color: #ff7004;
+}
+.settings-separator{
+  width: 1px;
+  height: 100%;
+  background-color: rgb(196 194 194 / 33%);
+}
+.header-settings > div:hover > .list-overlay {
+  visibility: visible;
+}
+.list-overlay{
+  visibility: hidden;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  position: absolute;
+  right: 0;
+  // transform: translateX(-50%);
+  padding: 20px;
+  z-index: 7;
+  min-width: 100px;
+  width: fit-content;
+}
+.list-overlay > div{
+  padding: 10px 25px 10px 0;
+  // width: 100px;
+
+  text-wrap: nowrap;
+  text-align: start;
+}
+.list-overlay > div:not(:last-child){
+  border-bottom: 1px solid rgb(136, 135, 135);
+}
+.list-overlay > div:hover{
+  cursor: pointer;
+  color: #ff7004;
+}

@@ -1,0 +1,37 @@
+<div class="sidebar hidden lg:block">
+
+<ng-container [ngTemplateOutlet]="sidebarTemplate" ></ng-container>
+</div>
+<p-sidebar ngSkipHydration styleClass="admin-panel-sidebar" [(visible)]="sidebarVisible" [transitionOptions]="'0.3s cubic-bezier(0, 0, 0.2, 1)'" [showCloseIcon]="true" [modal]="true"  [dismissible]="true">
+  <div class="sidebar">
+    <ng-container [ngTemplateOutlet]="sidebarTemplate" ></ng-container>
+  </div>
+  
+</p-sidebar>
+<div class="topbar">
+  <div (click)="sidebarVisible=true" class="block lg:hidden">Menu</div>
+</div>
+<div class="pb-36 lg:left-padding admin-panel-container pt-8 ">
+  <router-outlet></router-outlet>
+</div>
+
+<ng-template #sidebarTemplate>
+  @if (sidebarVisible) {
+    <div class="w-full text-right text-white">
+
+      <i (click)="sidebarVisible = false" class="fa-solid fa-xmark"></i>
+    </div>
+  }
+  <ul>
+    <li routerLink="/layout/products">
+      Leave Admin Panel
+    </li>
+    <li routerLink="./product">
+      New Product
+    </li>
+    <li routerLink="./categories">
+      Manage Categories
+    </li>
+  </ul>
+
+</ng-template>

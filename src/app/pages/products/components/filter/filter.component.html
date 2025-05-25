@@ -1,0 +1,86 @@
+
+
+
+<div class="filter-section">
+  <div class="filter-title">
+    AVAILABILITY
+  </div>
+  <div class="filter-inputs">
+    <div >
+      <input class="filter-checkbox-input" type="checkbox" name="inStock" id="inStock"> <span class="filter-checkbox-filter" >In Stock(30)</span>
+    </div>
+    <div>
+      <input class="filter-checkbox-input" type="checkbox" name="outOfStock" id="outOfStock"> <span class="filter-checkbox-filter" >Out Of Stock(30)</span>
+    </div>
+  </div>
+</div>
+<div class="filter-section">
+  <div class="filter-title">
+    PRICE
+  </div>
+  <div >
+    <label class="block" for="fromPrice">From</label>
+    <p-inputNumber [(ngModel)]="filter.fromPrice" [min]="0" [styleClass]="'price-range-input'" [showButtons]="true" inputId="fromPrice" mode="currency" currency="USD"> </p-inputNumber>
+    <label class="block" for="toPrice">TO</label>
+    <p-inputNumber [(ngModel)]="filter.toPrice" [min]="0"  [styleClass]="'price-range-input'" [showButtons]="true" inputId="toPrice" mode="currency" currency="USD"> </p-inputNumber>
+
+  </div>
+</div>
+<div class="filter-section">
+  <div class="filter-title">
+    COLOR
+  </div>
+  <div class="filter-inputs">
+    <div >
+      <input class="filter-checkbox-input" type="checkbox" name="BlackInput" id="BlackInput"> <span class="filter-checkbox-filter" >Black (6)</span>
+    </div>
+    <div >
+      <input class="filter-checkbox-input" type="checkbox" name="Blue Input" id="Blue Input"> <span class="filter-checkbox-filter" >Blue (10)</span>
+    </div>
+    <div >
+      <input class="filter-checkbox-input" type="checkbox" name="GoldInput" id="GoldInput"> <span class="filter-checkbox-filter" >Gold (6)</span>
+    </div>
+    <div >
+      <input class="filter-checkbox-input" type="checkbox" name="GrayInput" id="GrayInput"> <span class="filter-checkbox-filter" >Gray (6)</span>
+    </div>
+    <div >
+      <input class="filter-checkbox-input" type="checkbox" name="GreenInput" id="GreenInput"> <span class="filter-checkbox-filter" >Green (7)</span>
+    </div>
+    <div >
+      <input class="filter-checkbox-input" type="checkbox" name="MagentaInput" id="MagentaInput"> <span class="filter-checkbox-filter" >Magenta (6)</span>
+    </div>
+    <div >
+      <input class="filter-checkbox-input" type="checkbox" name="MaroonInput" id="MaroonInput"> <span class="filter-checkbox-filter" >Maroon (6)</span>
+    </div>
+    <div >
+      <input class="filter-checkbox-input" type="checkbox" name="NavyInput" id="NavyInput"> <span class="filter-checkbox-filter" >Navy (6)</span>
+    </div>
+    <div >
+      <input class="filter-checkbox-input" type="checkbox" name="OrangeInput" id="OrangeInput"> <span class="filter-checkbox-filter" >Orange (3)</span>
+    </div>
+    <div >
+      <input class="filter-checkbox-input" type="checkbox" name="PinkInput" id="PinkInput"> <span class="filter-checkbox-filter" >Pink (6)</span>
+    </div>
+    <div >
+      <input class="filter-checkbox-input" type="checkbox" name="PurpleInput" id="PurpleInput"> <span class="filter-checkbox-filter" >Purple (6)</span>
+    </div>
+    <div >
+      <input class="filter-checkbox-input" type="checkbox" name="RedInput" id="Red Input"> <span class="filter-checkbox-filter" >Red (10)</span>
+    </div>
+    <div >
+      <input class="filter-checkbox-input" type="checkbox" name="VioletInput" id="VioletInput"> <span class="filter-checkbox-filter" >Violet (6)</span>
+    </div>
+    <div >
+      <input class="filter-checkbox-input" type="checkbox" name="WhiteInput" id="WhiteInput"> <span class="filter-checkbox-filter" >White (9)</span>
+    </div>
+    <div >
+      <input class="filter-checkbox-input" type="checkbox" name="YellowInput" id="YellowInput"> <span class="filter-checkbox-filter" >Yellow (6)</span>
+    </div>
+  </div>
+</div>
+
+<div class="text-start">
+  <button class="apply-filter-button">
+    Apply Filter
+  </button>
+</div>

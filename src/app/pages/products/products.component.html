@@ -1,0 +1,74 @@
+
+<!-- <div class=" products-container "> -->
+
+  <div class=" flex flex-row pt-8 gap-7 flex-center justify-center">
+
+    <div class="hidden  lg:block basis-1/4 ">
+
+      <app-filter></app-filter>
+    </div>
+
+    <div class=" basis-11/12 lg:basis-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-16" >
+
+      @for (product of productList; track product.id) {
+        <div #product1   pAnimateOnScroll [enterClass]="'fadein'" class="product">
+            <div class="relative products-img-overlay-wrapper">
+              <div class="image-overlay">
+                @if (product.salePercentage) {
+
+                  <div class="image-sale mb-3">
+                    Sale
+                  </div>
+                  <div class="image-sale-percentage">
+                    {{product.salePercentage/100 | percent}}
+                  </div>
+                }
+              <div (click)="likeProduct(product)" [ngClass]="{'favorite-button-liked':product.isFavorite }" class="favorite-button img-button">
+                @if(product.isFavorite){
+                  <i class="fa-solid fa-heart text-white"></i>
+                }@else {
+                  <i class="fa-regular fa-heart"></i>
+                }
+
+              </div>
+              <div class="quick-view-button img-button" (click)="openQuickView(product)">
+                <i class="fa-solid fa-expand"></i>
+              </div>
+              <div class="view-product-button " [routerLink]="'./'+product.id" [queryParams]="{title: product.title}">
+                <div>
+                  View More
+                </div>
+              </div>
+            </div>
+            <div class="product-img-container ">
+              @defer (on viewport(product1) ; prefetch on idle) {
+              <img [src]="product.imgUrl" [alt]="product.title">
+              }
+            </div>
+        </div>
+        <div class="product-list-details">
+            <div [pTooltip]="product.title" class="product-list-title">
+              {{product.title}}
+            </div>
+            <div class="price">
+              <span>
+                ${{product.price | number: '1.2-2'}}
+              </span>
+              @if (product.salePercentage) {
+                <span class="price-sale">
+                  ${{product.price / (1-product.salePercentage/100) | number: '1.2-2'}}
+                </span>
+              }
+            </div>
+        </div>
+      <!-- @placeholder {
+       <div>
+         loading
+        </div>
+      } -->
+    </div>
+
+  }
+  </div>
+</div>
+<!-- </div> -->

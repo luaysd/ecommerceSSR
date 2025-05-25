@@ -1,1 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "primeicons/primeicons.css";
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+*{
+  box-sizing : border-box
+}
+body{
+  overflow-x: hidden;
+  touch-action: manipulation;
+}
+.custom-dialog{
+  width: 100vw;
+  max-width: 1000px;
+  // padding: 10px;
+  height: 100%;
+}
+img{
+  object-fit: contain !important;
+    height: 100%;
+    // aspect-ratio: 1;
+    width: 100%;
+}
+
+.p-dropdown ,input.p-element , textarea.p-element  {
+  border: 1px solid #c1c1c1;
+  border-radius: 0;
+  width: 100%;
+  min-height: 37px;
+  padding-left: 10px;
+  outline: none;
+  // box-shadow: none;
+
+}
+.p-element:has(input), .p-element .p-inputnumber , .p-dropdown{
+  width: 100%;
+}
+input.p-element:focus , textarea.p-element:focus , .p-dropdown:focus ,.p-dropdown:not(.p-disabled).p-focus {
+  box-shadow: 0 0 2px 2px #5b5b5b33;
+
+}
+.p-slider-handle {
+  border: 2px solid #ff7004;
+}
+.p-slider-handle:hover {
+  background: #ff7004;
+}
+.p-slider .p-slider-range {
+  background: #ff7004;
+}
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+  background: #ff7004;
+}
+.p-inputswitch.p-inputswitch-checked:not(.p-disabled):hover .p-inputswitch-slider
+{
+  background: #d45c00;
+
+}
+.p-progressbar .p-progressbar-value {
+  background: #ff7004;
+}

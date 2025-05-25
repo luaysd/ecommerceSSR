@@ -1,0 +1,46 @@
+<div class="main-details flex flex-col lg:flex-row gap-5 h-full ">
+  <div class="product-img basis-1/2 h-full">
+    <img [src]="productDetails.imgUrl" alt="product image">
+  </div>
+  <div class="product-details basis-1/2 flex flex-col">
+
+    <h1 class="product-title">
+      {{productDetails.title}}
+    </h1>
+    <div class=" price-container w-fit py-5">
+
+      <span class="price">${{productDetails.price | number: '1.2-2'}}</span>
+      @if (productDetails.salePercentage) {
+      <span class="price-sale">
+        ${{productDetails.price / (1-productDetails.salePercentage/100) | number: '1.2-2'}}
+      </span>
+      }
+      @if (productDetails.salePercentage) {
+      <div class="sale-badge">
+        Sale -15%
+      </div>
+      }
+    </div>
+    <div class="product-description mt-4">
+      <p>
+        {{productDetails.description}}
+      </p>
+    </div>
+    <div class="buttons-container mt-auto flex flex-row gap-x-10 pt-4">
+      <div class="count-input-container">
+        <button (click)="decrementCount()" class="count-input-button">
+          <i class="fa-solid fa-minus"></i>
+        </button>
+        <input [(ngModel)]="numberOfItems" (input)="onInputChange($event)" autocomplete="off" type="text"
+          class="count-input" name="count" id="count">
+        <button (click)="incrementCount()" class="count-input-button">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+
+      <button class="add-to-cart-button">
+        Add to cart
+      </button>
+    </div>
+  </div>
+</div>

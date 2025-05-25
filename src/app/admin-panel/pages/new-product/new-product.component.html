@@ -1,0 +1,178 @@
+<form (ngSubmit)="onSubmit(form)" #form="ngForm" class="flex flex-col gap-y-5">
+  <div>
+    <label for="title">Product Title</label>
+    <input type="text" id="title" name="title" pInputText [(ngModel)]="product.title" />
+  </div>
+  <div>
+    <label for="description">Product Description</label>
+    <textarea id="description" name="description" pInputTextarea [(ngModel)]="product.description"></textarea>
+  </div>
+  <div class="flex gap-5">
+    <div class="basis-6/12">
+      <label class="block" for="price">Price</label>
+      <p-inputNumber [(ngModel)]="product.price" [min]="0" (ngModelChange)="onChangePrice($event)" [showButtons]="false"
+        name="price" inputId="toPrice" mode="currency" currency="USD"> </p-inputNumber>
+    </div>
+    <div class="basis-6/12">
+      <label class="block" for="isSale">Sale</label>
+      <p-inputSwitch [(ngModel)]="product.isSale" [disabled]="!product.price" (onChange)="onChangeIsSale($event)"
+        name="isSale"></p-inputSwitch>
+
+    </div>
+
+  </div>
+
+  @if (product.isSale) {
+  <div class="flex gap-5">
+    <div class="basis-6/12">
+      <label class="block" for="priceAfterSale">Price after sale</label>
+      <p-inputNumber [(ngModel)]="product.priceAfterSale" [min]="0" [max]="product.price"
+        (ngModelChange)="onChangePriceAfterSale($event)" [showButtons]="false" name="priceAfterSale"
+        inputId="priceAfterSale" mode="currency" currency="USD"> </p-inputNumber>
+    </div>
+    <div class="basis-6/12">
+      <label class="block" for="salePercenteage">Sale Percentage</label>
+      <p-inputNumber [(ngModel)]="product.salePercentage" [min]="0" [max]="100"
+        (ngModelChange)="onChangeSalePercentage($event)" suffix="%" [showButtons]="false" name="salePercenteage"
+        inputId="salePercenteage" mode="decimal"> </p-inputNumber>
+      <p-slider [(ngModel)]="product.salePercentage" name="salePercenteageSlider"
+        (ngModelChange)="onChangeSalePercentage($event)" [step]="1" [min]="0" [max]="100" class="w-full"></p-slider>
+    </div>
+  </div>
+  }
+  <div class="flex gap-5">
+    <div class="basis-6/12">
+      <label class="block" for="price">Category</label>
+      <p-dropdown [options]="categoryList" [(ngModel)]="product.categoryId" [optionValue]="'categoryId'"
+        [optionLabel]="'description'" [name]="'category'" [showClear]="false"
+        placeholder="Select a Category"></p-dropdown>
+    </div>
+  </div>
+  @if (this.config.isRemovePhotoBackgroundEnabled || this.config.isCompressImageEnabled) {
+  <div class="flex gap-5">
+    @if (this.config.isRemovePhotoBackgroundEnabled ) {
+
+      <div class="basis-6/12">
+        <label class="block" for="isSale">Remove Photo Background <i
+          [pTooltip]="'Enabling this will increase the time to uplaod a photo'"
+          class="fa-solid fa-circle-info cursor-pointer"></i></label>
+          <p-inputSwitch [(ngModel)]="isRemovePhotoBackgroundEnabled"  [disabled]="image || isRemoveBackgroundLoading"
+          name="isRemovePhotoBackground"></p-inputSwitch>
+        </div>
+      }
+    @if (this.config.isCompressImageEnabled ) {
+
+    <div class="basis-6/12 flex flex-col justify-between">
+      <label class="block" for="isSale">Compress Image <i
+          [pTooltip]="'You can use an external image compression tool but the image result should be less than 250 KB'"
+          class="fa-solid fa-circle-info cursor-pointer"></i></label>
+      <p-inputSwitch [(ngModel)]="isCompressImageEnabled" [disabled]="image || isRemoveBackgroundLoading"
+        name="isCompressImageEnabled"></p-inputSwitch>
+    </div>
+  }
+  </div>
+    @if (isRemovePhotoBackgroundEnabled ) {
+      <p class="text-yellow-500 text-xs">Warning: Image will always be compressed if its size after background removal is more than 250 KB</p>
+    }
+  }
+  <div class="col-span-full">
+    <div class="flex justify-between w-full">
+
+      <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">Product photo</label>
+      @if (image) {
+      <div>
+        <button (click)="cancelImage()" class="cancel-button" type="button">Cancel Image</button>
+      </div>
+      }
+    </div>
+
+
+    <div class=" relative mt-2 flex justify-center rounded-lg  px-6 py-10 drag-container drop"
+      [ngClass]=" isDragOver && !image ? 'drag-over-container' : '' " (drop)="onDrop($event)"
+      (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)">
+
+      @if (isRemoveBackgroundLoading) {
+
+      <div class="py-7 px-4 text-center">
+        <p class="italic">Removing Background.This will take up to a minute...</p>
+        <p-progressBar Background mode="indeterminate" [class]="'w-full'" [style]="{ height: '6px' }"></p-progressBar>
+        <button class="cancel-remove-background-btn" (click)="cancelRemoveBackground($event)"
+          type="button">cancel</button>
+      </div>
+
+
+      }@else {
+
+      @if (isDragOver && !image) {
+
+      <p class="drop-here">Drop Here</p>
+      }
+
+      <div class="text-center ">
+        @if (!image) {
+        <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd"
+            d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
+            clip-rule="evenodd" />
+        </svg>
+        <div class="mt-4 flex flex-col text-sm leading-6 text-gray-600">
+
+          <div class="flex flex-row text-center w-full justify-center ">
+            <label for="file-upload" [ngClass]="isDragOver?'pointer-events-none' : 'enable-pointer-events'"
+              class="  upload-file-label bg-transparent relative cursor-pointer rounded-md font-semibold">
+              <input id="file-upload" name="file-upload" (input)="onUploadImage($event)" type="file" class="sr-only">
+              <span>Upload a file</span>
+            </label>
+            <p class="pl-1">or drag and drop</p>
+          </div>
+          <p class="text-xs leading-5 text-gray-600">PNG, JPG, up to 10MB</p>
+          <P>The recommended aspect <span class="font-bold">ratio</span> is <span class="font-bold">1:1</span></P>
+          <P>The minimum recommended <span class="font-bold">size</span> is <span class="font-bold">800 x 800</span>
+          </P>
+        </div>
+        }@else {
+        @if (image) {
+        <div class="w-full max-h-96 flex justify-center">
+          <img [src]="image" class=" max-h-96" [alt]="'Product Photo'" height="100%" width="70%">
+        </div>
+        }
+        }
+      </div>
+      }
+
+    </div>
+  </div>
+  <!-- <div>
+    <div class="flex flex-row gap 20px">
+      @if (!image) {
+        <div>
+          <p-fileUpload #fileUpload  mode="basic" [customUpload]="false" chooseLabel="Upload Image" [showCancelButton]="false" [showUploadButton]="false" name="demo[]" accept="image/*" [maxFileSize]="1000000" (onSelect)="onUpload($event)"></p-fileUpload>
+        </div>
+      }
+      @if (image) {
+        <div>
+          <button (click)="cancelImage()" class="cancel-button" type="button">Cancel Image</button>
+        </div>
+      }
+    </div> -->
+  <!-- <div class="drag-container" [ngClass]=" isDragOver && !image ? 'drag-over-container' : '' " (drop)="onDrop($event)" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)">
+      <span>Drag & Drop files here or click to select files</span> -->
+  <!-- @if (image) {
+        <div class="mt-8" >
+          <img [src]="image" [alt]="'test'" height="200px" width="200px" >
+        </div>
+      } -->
+  <!-- </div> -->
+
+  <!-- </div> -->
+  <div class="w-full text-end">
+    <button class="submit-btn" type="submit">
+      @if(isLoading){
+      <i class="pi pi-spin pi-spinner"></i>
+      }@else{
+      Upload
+      }
+    </button>
+  </div>
+</form>
+<canvas #canvas style="display: none;"></canvas>

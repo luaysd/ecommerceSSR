@@ -1,0 +1,7 @@
+.product-details-screen-container{
+  padding-top: 100px;
+}
+
+::ng-deep .product-details-screen-container img{
+  height: calc(100vh - 300px) !important;
+}

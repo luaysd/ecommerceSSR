@@ -1,0 +1,54 @@
+.submit-btn{
+  background: black;
+  color: white;
+  padding: 7px 13px;
+  border-radius: 3px;
+  min-width: 80px;
+  min-height: 38px;
+}
+.cancel-button{
+
+  background-color: rgb(186, 29, 29);
+  padding: 4px 4px;
+  border-radius: 5px;
+  color: white;
+}
+.drag-container{
+
+  border: 3px dotted #bcb9b9;
+
+
+}
+.drag-over-container{
+
+  background-color: rgba(152, 151, 151, 0.938);
+}
+
+
+.drop * {pointer-events: none ;}
+.enable-pointer-events {
+  pointer-events: all !important ;
+}
+.drop-here{
+  position: absolute;
+  top: 0;
+  // left: 50%;
+  // transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+  font-size: 23px;
+  width: fit-content;
+  min-width:400px;
+}
+.upload-file-label{
+  color: #ff7004;
+}
+.cancel-remove-background-btn{
+  background: #eb0000;
+  padding: 2px 8px;
+  border-radius: 8px;
+  margin-top: 9px;
+  color: white;
+  cursor: pointer;
+  pointer-events: all !important;
+}

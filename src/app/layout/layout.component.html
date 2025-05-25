@@ -1,0 +1,49 @@
+<!-- <header> -->
+
+  <app-header></app-header>
+<div class="header-menu">
+  <ul class="menu">
+    @for (item of menuItems; track $index) {
+      <li [style]="'position:static; cursor:pointer'" [routerLink]="item.route? item.route : null">
+        <a class="menu-title" >{{item.title}}@if (item.children?.length){<i [style]="'font-size:11px'"  class="fa-solid fa-chevron-down ps-1"></i>}</a>
+        @if (item.children?.length) {
+          <div class="overlay" [ngClass]="{'mega-overlay' : item.isMega}">
+            <ul>
+              @for (subItem of item.children; track $index) {
+
+                  <li class="menu-sub-item"  ><a [routerLink]="subItem.route" > @if (subItem.icon) {<i  [class]="subItem.icon"></i>} {{subItem.title}}</a></li>
+
+              }
+            </ul>
+        </div>
+        }
+    </li>
+    }
+
+</ul>
+</div>
+<div class="breadcrumbs-container">
+
+  <div class="w-4/5 flex flex-col lg:flex-row   justify-between	items-center gap-y-5">
+
+    <div class="screen-title">
+      <h2>
+        {{layoutService.title()}}
+      </h2>
+    </div>
+    <div class="breadcrumbs">
+      @for (item of layoutService.breadCrumb(); track $index ; let isLast = $last) {
+
+        {{item}}@if(!isLast){ / }
+
+      }
+    </div>
+  </div>
+</div>
+<!-- </header> -->
+
+<div class="layout-container">
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

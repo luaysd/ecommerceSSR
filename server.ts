@@ -12,11 +12,17 @@ export function app(): express.Express {
   const browserDistFolder = resolve(serverDistFolder, '../browser');
   const indexHtml = join(serverDistFolder, 'index.server.html');
 
-  const commonEngine = new CommonEngine();
+  const commonEngine = new CommonEngine({
+    enablePerformanceProfiler: true,
+  });
 
   server.set('view engine', 'html');
   server.set('views', browserDistFolder);
 
+//   server.use((req, res, next) => {
+//     res.setHeader('Content-Encoding', 'gzip');
+//     next();
+// });
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
@@ -27,6 +33,8 @@ export function app(): express.Express {
   // All regular routes use the Angular engine
   server.get('*', (req, res, next) => {
     const { protocol, originalUrl, baseUrl, headers } = req;
+
+    console.log('routing to : ' + originalUrl);
 
     commonEngine
       .render({
